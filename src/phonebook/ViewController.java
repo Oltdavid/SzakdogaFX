@@ -73,14 +73,14 @@ public class ViewController implements Initializable {
     private void addContact(ActionEvent event) {
         String email = inputEmail.getText();
         if (email.length() > 3 && email.contains("@") && email.contains(".")) {
-            Person newPerson = new Person(inputLastname.getText(), inputFirstName.getText(), inputEmail.getText(),inputAnyjaneve.getText());
+            Person newPerson = new Person(inputLastname.getText(), inputFirstName.getText(), inputEmail.getText(), inputAnyjaneve.getText());
             data.add(newPerson);
             db.addContact(newPerson);
             inputLastname.clear();
             inputFirstName.clear();
             inputEmail.clear();
             inputAnyjaneve.clear();
-        }else{
+        } else {
             alert("Adj meg egy valódi e-mail címet!");
         }
     }
@@ -92,7 +92,7 @@ public class ViewController implements Initializable {
         if (fileName != null && !fileName.equals("")) {
             PdfGeneration pdfCreator = new PdfGeneration();
             pdfCreator.pdfGeneration(fileName, data);
-        }else{
+        } else {
             alert("Adj meg egy fájlnevet!");
         }
     }
@@ -145,13 +145,13 @@ public class ViewController implements Initializable {
             }
         }
         );
-        
-         TableColumn anyjaNeveCol = new TableColumn("Anyja neve");
-        anyjaNeveCol.setMinWidth(100);
-        anyjaNeveCol.setCellValueFactory(new PropertyValueFactory<Person, String>("anyjaNeve"));
-        anyjaNeveCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        anyjaNeveCol.setOnEditCommit(
+        TableColumn aNeveCol = new TableColumn("Anyja neve");
+        aNeveCol.setMinWidth(100);
+        aNeveCol.setCellValueFactory(new PropertyValueFactory<Person, String>("anyjaNeve"));
+        aNeveCol.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        aNeveCol.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
             @Override
             public void handle(TableColumn.CellEditEvent<Person, String> t) {
@@ -162,48 +162,41 @@ public class ViewController implements Initializable {
         }
         );
 
-        TableColumn removeCol = new TableColumn( "Törlés" );
+        TableColumn removeCol = new TableColumn("Törlés");
         emailCol.setMinWidth(100);
 
-        Callback<TableColumn<Person, String>, TableCell<Person, String>> cellFactory = 
-                new Callback<TableColumn<Person, String>, TableCell<Person, String>>()
-                {
-                    @Override
-                    public TableCell call( final TableColumn<Person, String> param )
-                    {
-                        final TableCell<Person, String> cell = new TableCell<Person, String>()
-                        {   
-                            final Button btn = new Button( "Törlés" );
+        Callback<TableColumn<Person, String>, TableCell<Person, String>> cellFactory
+                = new Callback<TableColumn<Person, String>, TableCell<Person, String>>() {
+            @Override
+            public TableCell call(final TableColumn<Person, String> param) {
+                final TableCell<Person, String> cell = new TableCell<Person, String>() {
+                    final Button btn = new Button("Törlés");
 
-                            @Override
-                            public void updateItem( String item, boolean empty )
-                            {
-                                super.updateItem( item, empty );
-                                if ( empty )
-                                {
-                                    setGraphic( null );
-                                    setText( null );
-                                }
-                                else
-                                {
-                                    btn.setOnAction( ( ActionEvent event ) ->
-                                            {
-                                                Person person = getTableView().getItems().get( getIndex() );
-                                                data.remove(person);
-                                                db.removeContact(person);
-                                       } );
-                                    setGraphic( btn );
-                                    setText( null );
-                                }
-                            }
-                        };
-                        return cell;
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                            setText(null);
+                        } else {
+                            btn.setOnAction((ActionEvent event)
+                                    -> {
+                                Person person = getTableView().getItems().get(getIndex());
+                                data.remove(person);
+                                db.removeContact(person);
+                            });
+                            setGraphic(btn);
+                            setText(null);
+                        }
                     }
                 };
+                return cell;
+            }
+        };
 
-        removeCol.setCellFactory( cellFactory );
-        
-        table.getColumns().addAll(lastNameCol, firstNameCol, emailCol,anyjaNeveCol, removeCol);
+        removeCol.setCellFactory(cellFactory);
+
+        table.getColumns().addAll(lastNameCol, firstNameCol, emailCol, aNeveCol, removeCol);
 
         data.addAll(db.getAllContacts());
 
@@ -263,12 +256,12 @@ public class ViewController implements Initializable {
     private void alert(String text) {
         mainSplit.setDisable(true);
         mainSplit.setOpacity(0.4);
-        
+
         Label label = new Label(text);
         Button alertButton = new Button("OK");
         VBox vbox = new VBox(label, alertButton);
         vbox.setAlignment(Pos.CENTER);
-        
+
         alertButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -277,7 +270,7 @@ public class ViewController implements Initializable {
                 vbox.setVisible(false);
             }
         });
-        
+
         anchor.getChildren().add(vbox);
         anchor.setTopAnchor(vbox, 300.0);
         anchor.setLeftAnchor(vbox, 300.0);
