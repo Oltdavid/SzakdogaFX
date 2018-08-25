@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="anchor" fx:id="anchor" prefHeight="650.0" prefWidth="800" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phonebook.ViewController">
+<AnchorPane id="anchor" fx:id="anchor" prefHeight="650.0" prefWidth="992.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phonebook.ViewController">
      <children>
         <SplitPane id="mainSplit" fx:id="mainSplit" dividerPositions="0.25" layoutY="32.0" prefHeight="568.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
             <items>
@@ -36,7 +36,7 @@
                      </children></Pane>
                   <Pane id="contactPane" fx:id="contactPane" layoutX="59.0" layoutY="45.0" prefHeight="610.0" prefWidth="445.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <TableView id="table" fx:id="table" editable="true" layoutY="6.0" prefHeight="460.0" prefWidth="580.0">
+                        <TableView id="table" fx:id="table" editable="true" layoutY="6.0" prefHeight="460.0" prefWidth="739.0">
                           <placeholder>
                             <Label text="Nincs adat." />
                           </placeholder>
