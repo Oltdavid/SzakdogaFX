@@ -9,26 +9,30 @@ public class Person {
     private final SimpleStringProperty firstName;
     private final SimpleStringProperty lastName;
     private final SimpleStringProperty email;
+    private final SimpleStringProperty anyjaNeve;
     private final SimpleStringProperty id;
     
     public Person() {
         this.firstName = new SimpleStringProperty("");
         this.lastName = new SimpleStringProperty("");
         this.email = new SimpleStringProperty("");
+        this.anyjaNeve = new SimpleStringProperty("");
         this.id = new SimpleStringProperty("");
     }
  
-    public Person(String lName, String fName, String email) {
+    public Person(String lName, String fName, String email,String aNeve ) {
         this.lastName = new SimpleStringProperty(lName);
         this.firstName = new SimpleStringProperty(fName);
         this.email = new SimpleStringProperty(email);
+        this.anyjaNeve = new SimpleStringProperty(aNeve);
         this.id = new SimpleStringProperty("");
     }
     
-    public Person(Integer id, String lName, String fName, String email) {
+    public Person(Integer id, String lName, String fName, String email,String aNeve ) {
         this.lastName = new SimpleStringProperty(lName);
         this.firstName = new SimpleStringProperty(fName);
         this.email = new SimpleStringProperty(email);
+        this.anyjaNeve = new SimpleStringProperty(aNeve);
         this.id = new SimpleStringProperty(String.valueOf(id));
     }
     
@@ -51,6 +55,13 @@ public class Person {
     }
     public void setEmail(String fName) {
         email.set(fName);
+    }
+    
+     public String getAnyjaNeve() {
+        return anyjaNeve.get();
+    }
+    public void setAnyjaNeve(String aNeve) {
+        anyjaNeve.set(aNeve);
     }
 
     public String getId(){

@@ -42,6 +42,8 @@ public class ViewController implements Initializable {
     @FXML
     TextField inputEmail;
     @FXML
+    TextField inputAnyjaneve;
+    @FXML
     Button addNewContactButton;
     @FXML
     StackPane menuPane;
@@ -71,12 +73,13 @@ public class ViewController implements Initializable {
     private void addContact(ActionEvent event) {
         String email = inputEmail.getText();
         if (email.length() > 3 && email.contains("@") && email.contains(".")) {
-            Person newPerson = new Person(inputLastname.getText(), inputFirstName.getText(), email);
+            Person newPerson = new Person(inputLastname.getText(), inputFirstName.getText(), inputEmail.getText(),inputAnyjaneve.getText());
             data.add(newPerson);
             db.addContact(newPerson);
             inputLastname.clear();
             inputFirstName.clear();
             inputEmail.clear();
+            inputAnyjaneve.clear();
         }else{
             alert("Adj meg egy valódi e-mail címet!");
         }
@@ -142,6 +145,22 @@ public class ViewController implements Initializable {
             }
         }
         );
+        
+         TableColumn anyjaNeveCol = new TableColumn("Anyja neve");
+        anyjaNeveCol.setMinWidth(100);
+        anyjaNeveCol.setCellValueFactory(new PropertyValueFactory<Person, String>("anyjaNeve"));
+        anyjaNeveCol.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        anyjaNeveCol.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Person, String> t) {
+                Person actualPerson = (Person) t.getTableView().getItems().get(t.getTablePosition().getRow());
+                actualPerson.setAnyjaNeve(t.getNewValue());
+                db.updateContact(actualPerson);
+            }
+        }
+        );
 
         TableColumn removeCol = new TableColumn( "Törlés" );
         emailCol.setMinWidth(100);
@@ -184,7 +203,7 @@ public class ViewController implements Initializable {
 
         removeCol.setCellFactory( cellFactory );
         
-        table.getColumns().addAll(lastNameCol, firstNameCol, emailCol, removeCol);
+        table.getColumns().addAll(lastNameCol, firstNameCol, emailCol,anyjaNeveCol, removeCol);
 
         data.addAll(db.getAllContacts());
 

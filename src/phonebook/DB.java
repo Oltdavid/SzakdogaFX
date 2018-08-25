@@ -55,7 +55,7 @@ public class DB {
             ResultSet rs = dbmd.getTables(null, "APP", "CONTACTS", null);
             if(!rs.next())
             { 
-             createStatement.execute("create table contacts(id INT not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),lastname varchar(20), firstname varchar(20), email varchar(30))");
+             createStatement.execute("create table contacts(id INT not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),lastname varchar(20), firstname varchar(20), email varchar(30),anyjaneve varchar(20))");
             }
         } catch (SQLException ex) {
             System.out.println("Valami baj van az adattáblák létrehozásakor.");
@@ -72,7 +72,7 @@ public class DB {
             users = new ArrayList<>();
             
             while (rs.next()){
-                Person actualPerson = new Person(rs.getInt("id"),rs.getString("lastname"),rs.getString("firstname"),rs.getString("email"));
+                Person actualPerson = new Person(rs.getInt("id"),rs.getString("lastname"),rs.getString("firstname"),rs.getString("email"),rs.getString("anyjaneve"));
                 users.add(actualPerson);
             }
         } catch (SQLException ex) {
@@ -84,11 +84,12 @@ public class DB {
     
     public void addContact(Person person){
       try {
-        String sql = "insert into contacts (lastname, firstname, email) values (?,?,?)";
+        String sql = "insert into contacts (lastname, firstname, email,anyjaneve) values (?,?,?,?)";
         PreparedStatement preparedStatement = conn.prepareStatement(sql);
         preparedStatement.setString(1, person.getLastName());
         preparedStatement.setString(2, person.getFirstName());
         preparedStatement.setString(3, person.getEmail());
+        preparedStatement.setString(4, person.getAnyjaNeve());
         preparedStatement.execute();
         } catch (SQLException ex) {
             System.out.println("Valami baj van a contact hozzáadásakor");
@@ -103,6 +104,7 @@ public class DB {
             preparedStatement.setString(1, person.getLastName());
             preparedStatement.setString(2, person.getFirstName());
             preparedStatement.setString(3, person.getEmail());
+            preparedStatement.setString(4, person.getAnyjaNeve());
             preparedStatement.setInt(4, Integer.parseInt(person.getId()));
             preparedStatement.execute();
         } catch (SQLException ex) {
