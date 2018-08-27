@@ -44,6 +44,8 @@ public class ViewController implements Initializable {
     @FXML
     TextField inputAnyjaneve;
     @FXML
+    TextField inputLakcim;
+    @FXML
     Button addNewContactButton;
     @FXML
     StackPane menuPane;
@@ -73,13 +75,15 @@ public class ViewController implements Initializable {
     private void addContact(ActionEvent event) {
         String email = inputEmail.getText();
         if (email.length() > 3 && email.contains("@") && email.contains(".")) {
-            Person newPerson = new Person(inputLastname.getText(), inputFirstName.getText(), inputEmail.getText(), inputAnyjaneve.getText());
+            Person newPerson = new Person(inputLastname.getText(), inputFirstName.getText(), 
+                               inputEmail.getText(), inputAnyjaneve.getText(), inputLakcim.getText());
             data.add(newPerson);
             db.addContact(newPerson);
             inputLastname.clear();
             inputFirstName.clear();
             inputEmail.clear();
             inputAnyjaneve.clear();
+            inputLakcim.clear();
         } else {
             alert("Adj meg egy valódi e-mail címet!");
         }
@@ -146,17 +150,33 @@ public class ViewController implements Initializable {
         }
         );
 
-        TableColumn aNeveCol = new TableColumn("Anyja neve");
-        aNeveCol.setMinWidth(100);
-        aNeveCol.setCellValueFactory(new PropertyValueFactory<Person, String>("anyjaNeve"));
-        aNeveCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        TableColumn anyjaneveNeveCol = new TableColumn("Anyja neve");
+        anyjaneveNeveCol.setMinWidth(100);
+        anyjaneveNeveCol.setCellValueFactory(new PropertyValueFactory<Person, String>("anyjaNeve"));
+        anyjaneveNeveCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        aNeveCol.setOnEditCommit(
+        anyjaneveNeveCol.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
             @Override
             public void handle(TableColumn.CellEditEvent<Person, String> t) {
                 Person actualPerson = (Person) t.getTableView().getItems().get(t.getTablePosition().getRow());
                 actualPerson.setAnyjaNeve(t.getNewValue());
+                db.updateContact(actualPerson);
+            }
+        }
+        );
+        
+        TableColumn lakcimCol = new TableColumn("Lakcím");
+        lakcimCol.setMinWidth(100);
+        lakcimCol.setCellValueFactory(new PropertyValueFactory<Person, String>("lakcim"));
+        lakcimCol.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        lakcimCol.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Person, String> t) {
+                Person actualPerson = (Person) t.getTableView().getItems().get(t.getTablePosition().getRow());
+                actualPerson.setLakcim(t.getNewValue());
                 db.updateContact(actualPerson);
             }
         }
@@ -196,7 +216,7 @@ public class ViewController implements Initializable {
 
         removeCol.setCellFactory(cellFactory);
 
-        table.getColumns().addAll(lastNameCol, firstNameCol, emailCol, aNeveCol, removeCol);
+        table.getColumns().addAll(lastNameCol, firstNameCol, emailCol, anyjaneveNeveCol, lakcimCol, removeCol);
 
         data.addAll(db.getAllContacts());
 

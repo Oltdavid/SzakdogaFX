@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Mon Aug 27 12:23:21 CEST 2018:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0165-7ae8-cafb-000000bdea10 
-on database directory C:\Users\PC3\Documents\NetBeansProjects\SzakdogaFX\sampleDB with class loader sun.misc.Launcher$AppClassLoader@1f96302 
-Loaded from file:/C:/Users/PC3/Documents/NetBeansProjects/SzakdogaFX/dist/run477839911/lib/derby.jar
+Mon Aug 27 18:11:21 CEST 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0165-7c27-6418-00000675b738 
+on database directory C:\Netbeans munka\SzakdogaFX\sampleDB with class loader sun.misc.Launcher$AppClassLoader@55f96302 
+Loaded from file:/C:/Netbeans%20munka/SzakdogaFX/dist/run47591828/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_181-b13
-user.dir=C:\Users\PC3\Documents\NetBeansProjects\SzakdogaFX
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
+java.runtime.version=1.8.0_171-b11
+user.dir=C:\Netbeans munka\SzakdogaFX
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

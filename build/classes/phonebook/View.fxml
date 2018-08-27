@@ -36,7 +36,7 @@
                      </children></Pane>
                   <Pane id="contactPane" fx:id="contactPane" layoutX="59.0" layoutY="45.0" prefHeight="610.0" prefWidth="445.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <TableView id="table" fx:id="table" editable="true" layoutY="6.0" prefHeight="460.0" prefWidth="739.0">
+                        <TableView id="table" fx:id="table" editable="true" layoutY="6.0" prefHeight="288.0" prefWidth="739.0">
                           <placeholder>
                             <Label text="Nincs adat." />
                           </placeholder>
@@ -45,14 +45,16 @@
                             <columns>
                           </columns>
                         </TableView>
-                        <TextField id="inputLastname" fx:id="inputLastname" layoutX="100.0" layoutY="482.0" prefHeight="25.0" prefWidth="175.0" promptText="Kovács" />
-                        <TextField id="inputFirstName" fx:id="inputFirstName" layoutX="100.0" layoutY="514.0" prefHeight="25.0" prefWidth="175.0" promptText="Gyula" />
-                        <TextField id="inputEmail" fx:id="inputEmail" layoutX="100.0" layoutY="545.0" prefHeight="25.0" prefWidth="175.0" promptText="test@gmail.com" />
-                        <TextField id="inputAnyjaneve" fx:id="inputAnyjaneve" layoutX="100.0" layoutY="573.0" prefHeight="25.0" prefWidth="175.0" promptText="Anyja neve" />
-                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="487.0" prefHeight="17.0" prefWidth="72.0" text="Vezetéknév:" />
-                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="519.0" prefHeight="17.0" prefWidth="72.0" text="Keresztnév:" />
-                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="550.0" prefHeight="17.0" prefWidth="72.0" text="Email:" />
-                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="577.0" prefHeight="17.0" prefWidth="72.0" text="Anyja neve" />
+                        <TextField id="inputLastname" fx:id="inputLastname" layoutX="100.0" layoutY="294.0" prefHeight="25.0" prefWidth="175.0" promptText="Kovács" />
+                        <TextField id="inputFirstName" fx:id="inputFirstName" layoutX="100.0" layoutY="326.0" prefHeight="25.0" prefWidth="175.0" promptText="Gyula" />
+                        <TextField id="inputEmail" fx:id="inputEmail" layoutX="100.0" layoutY="357.0" prefHeight="25.0" prefWidth="175.0" promptText="test@gmail.com" />
+                        <TextField id="inputAnyjaneve" fx:id="inputAnyjaneve" layoutX="100.0" layoutY="388.0" prefHeight="25.0" prefWidth="175.0" promptText="Anyja neve" />
+                        <TextField id="inputLakcim" fx:id="inputLakcim" layoutX="100.0" layoutY="422.0" prefHeight="25.0" prefWidth="175.0" promptText="Lakcím" />
+                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="299.0" prefHeight="17.0" prefWidth="72.0" text="Vezetéknév:" />
+                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="331.0" prefHeight="17.0" prefWidth="72.0" text="Keresztnév:" />
+                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="362.0" prefHeight="17.0" prefWidth="72.0" text="Email:" />
+                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="392.0" prefHeight="17.0" prefWidth="72.0" text="Anyja neve:" />
+                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="426.0" prefHeight="17.0" prefWidth="72.0" text="Lakcím" />
                         <Button id="addNewContactButton" fx:id="addNewContactButton" layoutX="286.0" layoutY="514.0" mnemonicParsing="false" onAction="#addContact" text="Új kontakt hozzáadása" />
                      </children>
                   </Pane>
