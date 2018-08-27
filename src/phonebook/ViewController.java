@@ -46,6 +46,8 @@ public class ViewController implements Initializable {
     @FXML
     TextField inputLakcim;
     @FXML
+    TextField inputTajszam;
+    @FXML
     Button addNewContactButton;
     @FXML
     StackPane menuPane;
@@ -76,7 +78,7 @@ public class ViewController implements Initializable {
         String email = inputEmail.getText();
         if (email.length() > 3 && email.contains("@") && email.contains(".")) {
             Person newPerson = new Person(inputLastname.getText(), inputFirstName.getText(), 
-                               inputEmail.getText(), inputAnyjaneve.getText(), inputLakcim.getText());
+                               inputEmail.getText(), inputAnyjaneve.getText(), inputLakcim.getText(), inputTajszam.getText());
             data.add(newPerson);
             db.addContact(newPerson);
             inputLastname.clear();
@@ -84,6 +86,7 @@ public class ViewController implements Initializable {
             inputEmail.clear();
             inputAnyjaneve.clear();
             inputLakcim.clear();
+            inputTajszam.clear();
         } else {
             alert("Adj meg egy valódi e-mail címet!");
         }
@@ -181,6 +184,22 @@ public class ViewController implements Initializable {
             }
         }
         );
+        
+         TableColumn tajszamCol = new TableColumn("Taj szám");
+        tajszamCol.setMinWidth(100);
+        tajszamCol.setCellValueFactory(new PropertyValueFactory<Person, String>("tajszam"));
+        tajszamCol.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        tajszamCol.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Person, String> t) {
+                Person actualPerson = (Person) t.getTableView().getItems().get(t.getTablePosition().getRow());
+                actualPerson.setTajszam(t.getNewValue());
+                db.updateContact(actualPerson);
+            }
+        }
+        );
 
         TableColumn removeCol = new TableColumn("Törlés");
         emailCol.setMinWidth(100);
@@ -216,7 +235,7 @@ public class ViewController implements Initializable {
 
         removeCol.setCellFactory(cellFactory);
 
-        table.getColumns().addAll(lastNameCol, firstNameCol, emailCol, anyjaneveNeveCol, lakcimCol, removeCol);
+        table.getColumns().addAll(lastNameCol, firstNameCol, emailCol, anyjaneveNeveCol, lakcimCol, tajszamCol, removeCol);
 
         data.addAll(db.getAllContacts());
 

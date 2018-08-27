@@ -45,6 +45,9 @@ public class PdfGeneration {
             table.addCell("Sorszám");
             table.addCell("Vezetéknév");
             table.addCell("Keresztnév");
+            table.addCell("Anyja neve");
+            table.addCell("Lakcím");
+            table.addCell("TAJ");
             table.addCell("E-mail cím");
             table.setHeaderRows(1);
             
@@ -57,6 +60,10 @@ public class PdfGeneration {
                 table.addCell(""+i);
                 table.addCell(actualPerson.getLastName());
                 table.addCell(actualPerson.getFirstName());
+                table.addCell(actualPerson.getAnyjaNeve());
+                table.addCell(actualPerson.getLakcim());
+                table.addCell(actualPerson.getTajszam());
+                table.addCell(actualPerson.getEmail());
                 table.addCell(actualPerson.getEmail());
             }
             

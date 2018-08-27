@@ -11,6 +11,7 @@ public class Person {
     private final SimpleStringProperty email;
     private final SimpleStringProperty anyjaNeve;
     private final SimpleStringProperty lakcim;
+    private final SimpleStringProperty tajszam;
     private final SimpleStringProperty id;
     
     public Person() {
@@ -19,24 +20,27 @@ public class Person {
         this.email = new SimpleStringProperty("");
         this.anyjaNeve = new SimpleStringProperty("");
         this.lakcim = new SimpleStringProperty("");
+        this.tajszam = new SimpleStringProperty("");
         this.id = new SimpleStringProperty("");
     }
  
-    public Person(String lName, String fName, String email,String aNeve, String lakcim ) {
+    public Person(String lName, String fName, String email,String aNeve, String lakcim, String tajszam ) {
         this.lastName = new SimpleStringProperty(lName);
         this.firstName = new SimpleStringProperty(fName);
         this.email = new SimpleStringProperty(email);
         this.anyjaNeve = new SimpleStringProperty(aNeve);
         this.lakcim = new SimpleStringProperty(lakcim);
+        this.tajszam = new SimpleStringProperty(tajszam);
         this.id = new SimpleStringProperty("");
     }
     
-    public Person(Integer id, String lName, String fName, String email,String aNeve, String lakcim ) {
+    public Person(Integer id, String lName, String fName, String email,String aNeve, String lakcim, String tajszam ) {
         this.lastName = new SimpleStringProperty(lName);
         this.firstName = new SimpleStringProperty(fName);
         this.email = new SimpleStringProperty(email);
         this.anyjaNeve = new SimpleStringProperty(aNeve);
         this.lakcim = new SimpleStringProperty(lakcim);
+        this.tajszam = new SimpleStringProperty(tajszam);
         this.id = new SimpleStringProperty(String.valueOf(id));
     }
     
@@ -73,6 +77,13 @@ public class Person {
     }
     public void setLakcim(String Lakcim) {
         lakcim.set(Lakcim);
+    }
+    
+    public String getTajszam() {
+        return tajszam.get();
+    }
+    public void setTajszam(String Tajszam) {
+        tajszam.set(Tajszam);
     }
 
     public String getId(){
