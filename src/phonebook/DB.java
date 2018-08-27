@@ -55,7 +55,7 @@ public class DB {
             ResultSet rs = dbmd.getTables(null, "APP", "CONTACTS", null);
             if(!rs.next())
             { 
-             createStatement.execute("create table contacts(id INT not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),lastname varchar(20), firstname varchar(20), email varchar(20), anyjaneve varchar(20))");
+             createStatement.execute("create table contacts(id INT not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),lastname varchar(20), firstname varchar(20), email varchar(50), anyjaneve varchar(20))");
             }
         } catch (SQLException ex) {
             System.out.println("Valami baj van az adattáblák létrehozásakor.");
