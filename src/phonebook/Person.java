@@ -53,8 +53,8 @@ public class Person {
     public String getEmail() {
         return email.get();
     }
-    public void setEmail(String fName) {
-        email.set(fName);
+    public void setEmail(String Email) {
+        email.set(Email);
     }
     
      public String getAnyjaNeve() {

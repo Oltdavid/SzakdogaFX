@@ -55,7 +55,7 @@ public class DB {
             ResultSet rs = dbmd.getTables(null, "APP", "CONTACTS", null);
             if(!rs.next())
             { 
-             createStatement.execute("create table contacts(id INT not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),lastname varchar(20), firstname varchar(20), email varchar(30),anyjaneve varchar(20))");
+             createStatement.execute("create table contacts(id INT not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),lastname varchar(20), firstname varchar(20), email varchar(20), anyjaneve varchar(20))");
             }
         } catch (SQLException ex) {
             System.out.println("Valami baj van az adattáblák létrehozásakor.");
@@ -84,7 +84,7 @@ public class DB {
     
     public void addContact(Person person){
       try {
-        String sql = "insert into contacts (lastname, firstname, email,anyjaneve) values (?,?,?,?)";
+        String sql = "insert into contacts (lastname, firstname, email, anyjaneve) values (?,?,?,?)";
         PreparedStatement preparedStatement = conn.prepareStatement(sql);
         preparedStatement.setString(1, person.getLastName());
         preparedStatement.setString(2, person.getFirstName());
@@ -99,7 +99,7 @@ public class DB {
     
     public void updateContact(Person person){
       try {
-            String sql = "update contacts set lastname = ?, firstname = ? , email = ? where id = ?";
+            String sql = "update contacts set lastname = ?, firstname = ? , email = ?, anyjaneve = ? where id = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, person.getLastName());
             preparedStatement.setString(2, person.getFirstName());
